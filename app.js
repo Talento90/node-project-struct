@@ -16,11 +16,11 @@ models.forEach(function (model) {
   require(model);
 });
 
+//Configure PassportJs
+require('./config/passport')(passport, config);
 
-require('./config/passport')(passport);
-
+//Configure ExpressJs
 var app = express();
-
-require('./config/express')(app, config);
+require('./config/express')(app, passport, config);
 
 app.listen(config.port);

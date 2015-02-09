@@ -12,20 +12,12 @@ var config = {
     port: 3001,
     db: 'mongodb://localhost:27017/sso',
     passport: {
-      facebookAuth: {
-        clientID: 'your-secret-clientID-here', // your App ID
-        clientSecret: 'your-client-secret-here', // your App Secret
-        callbackURL: 'http://localhost:' + this.port + '/auth/facebook/callback'
-      },
-      twitterAuth: {
-        consumerKey: 'your-consumer-key-here',
-        consumerSecret: 'your-client-secret-here',
-        callbackURL: 'http://localhost:' + this.port + '/auth/twitter/callback'
-      },
-      googleAuth: {
-        clientID: 'your-secret-clientID-here',
-        clientSecret: 'your-client-secret-here',
-        callbackURL: 'http://localhost:'+ this.port +'/auth/google/callback'
+      secret: 'mysecret',
+      tokenExpirationMinuts: 5,
+      facebook: {
+        clientID: '1714893965403614', // your App ID
+        clientSecret: '75be3f2a6ca946a96788bf1f81230d99', // your App Secret
+        callbackURL: 'http://localhost:3001/auth/facebook/callback'
       }
     }
   },
