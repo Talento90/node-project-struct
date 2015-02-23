@@ -12,12 +12,9 @@ createError = ctrlHelpers.createError;
 
 var convertReqToUser = function(req) {
   var user = new User({
-    email: req.body.email,
+    username: req.body.username,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    age: req.body.age,
-    country: req.body.country,
-    city: req.body.city,
     role: req.body.role
   });
 
@@ -26,12 +23,12 @@ var convertReqToUser = function(req) {
 
 var createAuthResponse = function (user){
   var profile = {
-    email: user.email,
-    role: user.role
+    id: user.id,
+    username: user.username
   };
 
   //Generate Token
-  var token = jwt.sign(profile, config.passport.secret, { expiresInMinutes: config.passport.tokenExpirationMinutes });
+  var token = jwt.sign(profile, config.jwt.secret, { expiresInMinutes: config.jwt.tokenExpirationMinutes });
   return { user: profile, token : token };
 }
 
@@ -57,7 +54,7 @@ router.post('/login', function(req, res, next) {
     return next(createError(400, 'Missing username or password'));
   }
 
-  User.findOne({email: username}, function(err, user){
+  User.findOne({username: username}, function(err, user){
     if (err) return next(handleHttpCodeError(err));
     if(!user) return next(createError(404, 'Invalid username'));
 

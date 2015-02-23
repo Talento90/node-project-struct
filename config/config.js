@@ -8,10 +8,10 @@ var config = {
   development: {
     root: rootPath,
     app: {
-      name: 'tourstracker'
+      name: 'node-auth'
     },
     port: 3000,
-    db: 'mongodb://localhost:27017/tourstracker-dev',
+    db: 'mongodb://localhost:27017/node-auth-dev',
     logger: {
       dirname: __dirname + '/../logs',
       transports: [
@@ -23,7 +23,7 @@ var config = {
         }),
         new winston.transports.DailyRotateFile({
           datePattern: '.yyyy-MM-dd',
-          filename: __dirname + '/../logs/tourtracker.log',
+          filename: __dirname + '/../logs/node-auth.log',
           level: 'info',
           handleExceptions: true,
           json: true,
@@ -32,28 +32,28 @@ var config = {
         })
       ]
     },
-    passport: {
+    jwt: {
       secret: 'mysecret',
-      tokenExpirationMinutes: 5
+      tokenExpirationMinutes: 60
     }
   },
 
   test: {
     root: rootPath,
     app: {
-      name: 'tourstracker'
+      name: 'node-auth'
     },
     port: 3000,
-    db: 'mongodb://localhost/tourstracker-test'
+    db: 'mongodb://localhost/node-auth-test'
   },
 
   production: {
     root: rootPath,
     app: {
-      name: 'tourstracker'
+      name: 'node-auth'
     },
     port: 3000,
-    db: 'mongodb://localhost/tourstracker-production'
+    db: 'mongodb://localhost/node-auth-production'
   }
 };
 

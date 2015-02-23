@@ -41,7 +41,7 @@ module.exports.isAuthenticated = function(req, res, next) {
     return next(createError(401, 'Invalid Schema'));
   }
 
-  jwt.verify(token, config.passport.secret, function(err, decoded){
+  jwt.verify(token, config.jwt.secret, function(err, decoded){
     if(err){
       return next(createError(401, err.message));
     }

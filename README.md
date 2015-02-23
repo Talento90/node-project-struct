@@ -1,2 +1,3 @@
-# tourstracker
-Tours Tracker
+# node auth
+
+A simple api with jwt authentication.

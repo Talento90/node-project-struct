@@ -13,7 +13,7 @@ module.exports.paginate = function(req) {
   var paginate = {
     skip: req.query.skip || 0,
     top: req.query.top || 20,
-    sort: req.query.sort || 'field -createdDate',
+    sort: req.query.sort || '-createdDate'
   };
 
   return paginate;
