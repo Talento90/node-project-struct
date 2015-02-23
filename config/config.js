@@ -1,44 +1,61 @@
 var path = require('path'),
-    rootPath = path.normalize(__dirname + '/..'),
-    env = process.env.NODE_ENV || 'development';
+winston = require('winston'),
+rootPath = path.normalize(__dirname + '/..'),
+env = process.env.NODE_ENV || 'development';
 
 
 var config = {
   development: {
     root: rootPath,
     app: {
-      name: 'sso-node'
+      name: 'tourstracker'
     },
-    port: 3001,
-    db: 'mongodb://localhost:27017/sso',
+    port: 3000,
+    db: 'mongodb://localhost:27017/tourstracker-dev',
+    logger: {
+      dirname: __dirname + '/../logs',
+      transports: [
+        new winston.transports.Console({
+          level: 'debug',
+          handleExceptions: true,
+          json: false,
+          colorize: true
+        }),
+        new winston.transports.DailyRotateFile({
+          datePattern: '.yyyy-MM-dd',
+          filename: __dirname + '/../logs/tourtracker.log',
+          level: 'info',
+          handleExceptions: true,
+          json: true,
+          maxsize: '5242880', //5MB
+          colorize: false
+        })
+      ]
+    },
     passport: {
       secret: 'mysecret',
-      tokenExpirationMinuts: 5,
-      facebook: {
-        clientID: '1714893965403614', // your App ID
-        clientSecret: '75be3f2a6ca946a96788bf1f81230d99', // your App Secret
-        callbackURL: 'http://localhost:3001/auth/facebook/callback'
-      }
+      tokenExpirationMinutes: 5
     }
   },
 
   test: {
     root: rootPath,
     app: {
-      name: 'sso-node'
+      name: 'tourstracker'
     },
     port: 3000,
-    db: 'mongodb://localhost/sso-node-test'
+    db: 'mongodb://localhost/tourstracker-test'
   },
 
   production: {
     root: rootPath,
     app: {
-      name: 'sso-node'
+      name: 'tourstracker'
     },
     port: 3000,
-    db: 'mongodb://localhost/sso-node-production'
+    db: 'mongodb://localhost/tourstracker-production'
   }
 };
 
+config[env].environment = env;
 module.exports = config[env];

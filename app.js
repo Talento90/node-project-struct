@@ -1,26 +1,34 @@
+"use strict";
+
+//Create a wrapper for require - rRequire('path')
+global.rRequire = function(name) {
+    return require(__dirname + '/' + name);
+}
+
 var express = require('express'),
-  config = require('./config/config'),
+  config = rRequire('config/config'),
   glob = require('glob'),
   mongoose = require('mongoose'),
-  passport = require('passport');
+  logger = rRequire('libs/logger');
 
+//Connect to mongo database
 mongoose.connect(config.db);
 
 var db = mongoose.connection;
 db.on('error', function () {
-  throw new Error('unable to connect to database at ' + config.db);
+  logger.error('unable to connect to database at ' + config.db);
 });
 
+//Load all Mongoose models
 var models = glob.sync(config.root + '/app/models/*.js');
 models.forEach(function (model) {
   require(model);
 });
 
-//Configure PassportJs
-require('./config/passport')(passport, config);
-
-//Configure ExpressJs
+//Configure Expressjs
 var app = express();
-require('./config/express')(app, passport, config);
+require('./config/express')(app, config);
 
+//Start WebServer
 app.listen(config.port);
+logger.info('['+ config.environment + '] - Application running at port: ' + config.port);
