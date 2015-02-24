@@ -6,19 +6,30 @@ config = rRequire('config/config');
 var AUTH_HEADER = "authorization";
 var DEFAULT_AUTH_SCHEME = "jwt";
 
-var jwtOpts = {
-  issuer: '',
-  audience: '',
-  tokenBodyField: '',
-  tokenHeader: ''
-};
-
 
 var createError = function(status, message){
   var error = new Error(message);
   error.status = status;
   return error;
 };
+
+
+module.exports.isAuthorized = function (roles) {
+  return function(req, res, next) {
+
+    var userRole = req.user.role;
+
+    if(!userRole){
+      return next(createError(401,'No authorization'));
+    }
+
+    for (var i = 0; i < roles.length; i++){
+          if(roles[i] === userRole) return next();
+    }
+
+    return res.send(401, 'No authorization')
+  }
+}
 
 
 module.exports.isAuthenticated = function(req, res, next) {
