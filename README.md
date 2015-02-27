@@ -1,6 +1,7 @@
 # node auth
 
-A simple api with jwt authentication.
+* A simple rest api with jwt authentication.
+* No views support.
 
 #install
 * npm install
