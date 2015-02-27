@@ -2,12 +2,14 @@
 
 A simple api with jwt authentication.
 
-
 #install
-  * npm install
+* npm install
 
 # run
-  * grunt
+* grunt
+
+# tests & reports
+* grunt build 
 
 #api methods
 
@@ -22,3 +24,8 @@ A simple api with jwt authentication.
 * Authorized Requests
     * Set Authentication header to - "Authentication: JWT (generated token)"
 
+
+#Todos
+* Create unit tests
+* Create integration tests
+* Improve grunt file
