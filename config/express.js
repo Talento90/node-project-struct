@@ -12,7 +12,8 @@ var logger = rRequire('libs/logger');
 module.exports = function(app, config) {
   //Need to put in Configs (dev,common,short) common is apache style
   //Output stream for writing log lines, defaults to process.stdout
-  app.use(morgan('dev', { "stream": logger.stream }));
+  morgan.token('processId', function(req, res){ return process.pid; });
+  app.use(morgan(config.morgan, { "stream": logger.stream }));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true

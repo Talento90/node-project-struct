@@ -81,7 +81,7 @@ router.put('/:id', auth.isAuthenticated, function (req, res, next) {
 });
 
 /*Remove a todo*/
-router.delete('/:id', auth.isAuthenticated, auth.isAuthorized(['admin']), function (req, res, next) {
+router.delete('/:id', auth.isAuthenticated, function (req, res, next) {
   var id = req.params.id;
 
   if(!ctrlHelpers.isValidId(id)){

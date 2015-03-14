@@ -1,10 +1,17 @@
 var mongoose = require('mongoose'),
 User = mongoose.model('User'),
 jwt = require('jsonwebtoken'),
-config = rRequire('config/config');
+config = rRequire('config');
 
 var AUTH_HEADER = "authorization";
 var DEFAULT_AUTH_SCHEME = "jwt";
+
+var jwtOpts = {
+  issuer: '',
+  audience: '',
+  tokenBodyField: '',
+  tokenHeader: ''
+};
 
 
 var createError = function(status, message){
@@ -30,7 +37,6 @@ module.exports.isAuthorized = function (roles) {
     return res.send(401, 'No authorization')
   }
 }
-
 
 module.exports.isAuthenticated = function(req, res, next) {
   var authentication = req.headers[AUTH_HEADER];

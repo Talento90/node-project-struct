@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require('../config/config');
+var config = rRequire('config');
 var fs = require( 'fs' );
 var winston = require('winston');
 

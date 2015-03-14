@@ -20,20 +20,35 @@ module.exports = function (grunt) {
       dev: {
         script: 'app.js',
         options: {
-          ignore: ["node_modules/**", ".git/", "Gruntfile.js"]
+          ext: 'js,html',
+          watch: ['app.js', 'config/**/*.js', 'app/**/*.js', 'lib/**/*.js']
+        }
+      },
+      debug: {
+        script: 'app.js',
+        options: {
+          nodeArgs: ['--debug'],
+          ext: 'js,html',
+          watch: ['app.js', 'config/**/*.js', 'app/**/*.js', 'lib/**/*.js']
+        }
+      }
+    },
+    concurrent: {
+      dev: {
+        tasks: ['nodemon'],
+        options: {
+          logConcurrentOutput: true
+        }
+      },
+      debug: {
+        tasks: ['nodemon:debug', 'node-inspector'],
+        options: {
+          logConcurrentOutput: true
         }
       }
     },
     'node-inspector': {
-      custom: {
-        options: {
-          'web-port': 9000,
-          'web-host': 'localhost',
-          'debug-port': 5857,
-          'save-live-edit': true,
-          'no-preload': false // Disables preloading *.js to speed up startup
-        }
-      }
+      debug: { }
     },
     jshint: {
       src: ['app.js','app/**/*.js' ],
@@ -56,7 +71,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', ['nodemon']);
-  grunt.registerTask('inspector', ['node-inspector']);
+  grunt.registerTask('default', ['concurrent:dev']);
+  grunt.registerTask('debug', ['concurrent:debug']);
   grunt.registerTask('build', ['jshint', 'mochaTest']);
 };
