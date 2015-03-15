@@ -1,4 +1,4 @@
-# node auth
+# node-project-struct
 
 * A simple node js web api that demonstrates node js project structure.
 
