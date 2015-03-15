@@ -2,6 +2,12 @@
 
 * A simple node js web api that demonstrates node js project structure.
 
+#features
+* expressjs + mongoose
+* logger
+* clustering
+* JWT authentication
+
 #install
 * npm install
 
