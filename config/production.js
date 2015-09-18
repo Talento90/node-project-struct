@@ -3,7 +3,7 @@ module.exports = function(winston){
 
   var config = {
     app: {
-      name: 'tourstracker'
+      name: 'node-example'
     },
     port: process.env.PORT,
     db: 'production-db-connection-string',

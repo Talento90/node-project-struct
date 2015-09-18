@@ -1,12 +1,21 @@
-# node auth
+# node-project-struct
 
-* A simple rest api with jwt authentication.
+* A simple node js web api that demonstrates node js project structure.
+
+#features
+* expressjs + mongoose
+* logger
+* clustering
+* JWT authentication
 
 #install
 * npm install
 
 # run
 * grunt
+
+# debug
+* grunt debug
 
 # tests & reports
 * grunt build 
@@ -26,6 +35,4 @@
 
 
 #Todos
-* Create unit tests
-* Create integration tests
-* Improve grunt file
+* Create more tests
