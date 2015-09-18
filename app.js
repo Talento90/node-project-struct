@@ -1,17 +1,13 @@
 "use strict";
+require('app-module-path').addPath(__dirname);
 
-//Create a wrapper for require - rRequire('path')
-global.rRequire = function(name) {
-  return require(__dirname + '/' + name);
-}
-
-var config = rRequire('config');
-var server = rRequire('server');
+var config = require('config');
+var server = require('server');
 
 
 //Check if clustering is activated
 if(config.clustering){
-  rRequire('libs/clustering')(server);
+  require('./libs/clustering')(server);
 }else{
   server();
 }

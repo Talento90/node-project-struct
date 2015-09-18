@@ -3,9 +3,9 @@
 var express = require('express'),
 router = express.Router(),
 mongoose = require('mongoose'),
-auth = rRequire('libs/authentication'),
+auth = require('libs/auth'),
 Todo = mongoose.model('Todo'),
-ctrlHelpers = rRequire('app/utils/ctrlHelpers'),
+ctrlHelpers = require('app/utils/ctrlHelpers'),
 handleHttpCodeError = ctrlHelpers.handleHttpCodeError,
 createError = ctrlHelpers.createError;
 

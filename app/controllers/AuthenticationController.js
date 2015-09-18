@@ -5,8 +5,8 @@ router = express.Router(),
 mongoose = require('mongoose'),
 User = mongoose.model('User'),
 jwt = require('jsonwebtoken'),
-config = rRequire('config'),
-ctrlHelpers = rRequire('app/utils/ctrlHelpers'),
+config = require('config'),
+ctrlHelpers = require('app/utils/ctrlHelpers'),
 handleHttpCodeError = ctrlHelpers.handleHttpCodeError,
 createError = ctrlHelpers.createError;
 

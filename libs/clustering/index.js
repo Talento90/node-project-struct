@@ -1,6 +1,6 @@
 var cluster = require('cluster');
 var os = require('os');
-var logger = require('./logger');
+var logger = require('libs/logger');
 
 
 cluster.on('exit', function(worker, code) {

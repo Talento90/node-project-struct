@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
-var logger = rRequire('libs/logger');
+var logger = require('libs/logger');
 
 module.exports = function(app, config) {
   //Need to put in Configs (dev,common,short) common is apache style

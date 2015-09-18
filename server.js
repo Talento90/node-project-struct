@@ -4,7 +4,7 @@ module.exports = function() {
   express = require('express'),
   glob = require('glob'),
   mongoose = require('mongoose'),
-  logger = rRequire('libs/logger');
+  logger = require('libs/logger');
 
   //Connect to mongo database
   mongoose.connect(config.db);

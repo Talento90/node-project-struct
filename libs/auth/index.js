@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
 User = mongoose.model('User'),
 jwt = require('jsonwebtoken'),
-config = rRequire('config');
+config = require('config');
 
 var AUTH_HEADER = "authorization";
 var DEFAULT_AUTH_SCHEME = "jwt";
