@@ -1,5 +1,7 @@
 # node-project-struct
 
+# DEPRECATED PLEASE CHECK: https://github.com/Talento90/typescript-node
+
 * A simple node js web api that demonstrates node js project structure.
 
 #features
